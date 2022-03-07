@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+</body>
+
+<script>
+	let url="http://fptxl.com/fptxl/hello";
+	var a=new Promise(function(resolve, reject) {
+		// Standard XHR to load an image
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', url,true);
+		xhr.responseType = "";
+		xhr.onload = function() {
+			resolve("发送后回调函数中触发"+xhr.response);
+		};
+		xhr.send();
+	});
+	//此时then中方法是正确返回的回调函数
+	a.then(function(response) {
+		console.log(response);
+	});
+</script>
+</html>

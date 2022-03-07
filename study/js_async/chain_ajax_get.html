@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+</head>
+<body>
+<script>
+	let url="http://fptxl.com/fptxl/hello";
+	$.get(url, function (data, status, xhr) {
+		console.log("第1次回调成功："+data);
+		$.get(url, function (data, status, xhr) {
+			console.log("第2次回调成功："+data);
+			$.get(url, function (data, status, xhr) {
+				console.log("第3次回调成功："+data);
+				$.get(url, function (data, status, xhr) {
+					console.log("第4次回调成功："+data);
+				});
+			});
+		});
+	});
+</script>
+</body>
+</html>

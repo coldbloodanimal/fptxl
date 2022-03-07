@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+</head>
+<body>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function">
+	async 方法说明
+</a>
+<script>
+	//我们封装了下promise
+	let url = "http://fptxl.com/fptxl/hello";
+
+	//我们封装了下promise
+	function request(url) {
+		return new Promise(function (resolve, reject) {
+			// Standard XHR to load an image
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", url);
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			xhr.send();
+		});
+	}
+
+	async function foo(){
+		//await表达式会暂停整个async函数的执行进程并出让其控制权，
+		// 只有当其等待的基于promise的异步操作被兑现或被拒绝之后才会恢复进程。
+		// promise的解决值会被当作该await表达式的返回值。
+		var r1=await request(url);
+		console.log("第1次返回"+r1);
+		var r2=await request(url);
+		console.log("第2次返回"+r2);
+		var r3=await request(url);
+		console.log("第3次返回"+r3);
+		var r4=await request(url);
+		console.log("第4次返回"+r4);
+	}
+
+	foo();
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	//异步网络请求的例子
+	let url="http://fptxl.com/fptxl/hello";
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', url,true);
+	xhr.responseType = "";
+	xhr.onload = function() {
+		//3.执行回调函数
+		//正确的处理返回
+		console.log("发送后回调函数中触发"+xhr.response);
+	};
+	//1发起异步任务
+	xhr.send();
+	//错误的处理返回
+	//2执行其它代码
+	console.log("发送后立即执行"+xhr.response);
+</script>
+</body>
+</html>

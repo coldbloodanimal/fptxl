@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let url = "http://fptxl.com/fptxl/hello";
+	//我们封装了下promise
+	function request(url) {
+		return new Promise(function (resolve, reject) {
+			// Standard XHR to load an image
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", url);
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			xhr.send();
+		});
+	}
+	//不调用then方法，但是promise已经执行了
+	request(url);
+</script>
+</body>
+</html>

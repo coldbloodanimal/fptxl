@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let url = "http://fptxl.com/fptxl/hello";
+	//我们封装了下promise
+	function request(url) {
+		return new Promise(function (resolve, reject) {
+			// Standard XHR to load an image
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", url);
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			xhr.send();
+		});
+	}
+
+
+	async function req(url){
+		//返回 Promise 对象的处理结果。如果等待的不是 Promise 对象，则返回该值本身。
+		var result =await request(url);
+		console.log(result);
+	}
+	req(url);
+</script>
+</body>
+</html>

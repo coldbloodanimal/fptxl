@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>get instance port</button>
+<script>
+	//callback 例子
+	const btn = document.querySelector('button');
+	btn.addEventListener('click', () => {
+
+		var url=window.location.protocol+"//fptxl.com/fptxl/actuator/env";
+		//新派promise
+		var promise=fetch(url).then(response => response.json())
+			.then(data => {
+				var port=data["propertySources"][0]["properties"]["local.server.port"]["value"];
+				let pElem = document.createElement('p');
+				pElem.textContent = '内部服务端口为：'+port;
+				document.body.appendChild(pElem);
+			})
+
+	});
+</script>
+
+</body>
+</html>

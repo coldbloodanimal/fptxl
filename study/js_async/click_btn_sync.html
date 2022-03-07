@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+    </script>
+</head>
+<body>
+<button>Click me</button>
+<script>
+    //callback 例子
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', () => {
+		console.log("代码上面");
+		//同步代码例子
+       // alert('You clicked me!');
+        let pElem = document.createElement('p');
+        pElem.textContent = 'This is a newly-added paragraph.';
+        document.body.appendChild(pElem);
+    });
+    console.log("代码最下面");
+</script>
+</body>
+</html>

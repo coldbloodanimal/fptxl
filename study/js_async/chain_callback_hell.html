@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+</head>
+<body>
+<script>
+	let url="http://fptxl.com/fptxl/hello";
+	//简化下ajax写法
+	function request(url,successCallback,failCallback){
+		$.ajax(url,{"success":successCallback,"error":failCallback});
+	};
+	request(url,function(data, status, xhr){
+		console.log("第1次返回："+data);
+		request(url,function(data, status, xhr){
+			console.log("第2次返回："+data);
+			request(url,function(data, status, xhr){
+				console.log("第3次返回："+data);
+				request(url,function(data, status, xhr){
+					console.log("第4次返回："+data);
+				},function(data, status, xhr){
+					console.log(data);
+				})
+			},function(data, status, xhr){
+				console.log(data);
+			})
+		},function(data, status, xhr){
+			console.log(data);
+		})
+	},function(data, status, xhr){
+		console.log(data);
+	})
+
+</script>
+</body>
+</html>

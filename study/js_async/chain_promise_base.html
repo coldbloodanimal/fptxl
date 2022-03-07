@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+</head>
+<body>
+<script>
+	let url = "http://fptxl.com/fptxl/hello";
+
+	//我们封装了下promise
+	function request(url) {
+		return new Promise(function (resolve, reject) {
+			// Standard XHR to load an image
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", url);
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			xhr.send();
+		});
+	}
+
+	var req = request(url);
+	req.then(function(data){
+		console.log("第1次返回：" + data)
+		return request(url)
+	}).then(function(data){
+		console.log("第2次返回：" + data)
+		return request(url)
+	}).then(function(data){
+		console.log("第3次返回：" + data)
+		return request(url)
+	}).then(function(data){
+		console.log("第4次返回：" + data)
+	}).catch(function (data) {
+		console.log("返回错误：" + data)
+	})
+
+</script>
+</body>
+</html>

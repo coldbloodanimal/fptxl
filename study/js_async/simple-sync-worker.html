@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Simple synchronous JavaScript example</title>
+</head>
+<body>
+<button>Click me</button>
+<script>
+	const btn = document.querySelector('button');
+	const worker = new Worker('worker.js');
+
+	btn.addEventListener('click', () => {
+		//工作交给worker,postMessage()方法向worker的内部作用域发送一个消息
+		worker.postMessage('Go!');
+
+		let pElem = document.createElement('p');
+		pElem.textContent = 'This is a newly-added paragraph.';
+		document.body.appendChild(pElem);
+	});
+	//打印结果,onmessage函数用来处理从worker回传的消息
+	worker.onmessage = function(e) {
+		console.log(e.data);
+	}
+</script>
+</body>
+</html>
